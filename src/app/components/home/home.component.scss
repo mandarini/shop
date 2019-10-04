@@ -1,0 +1,29 @@
+ul {
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    border: 1px lightgray solid;
+    border-radius: 4px;
+    margin: 4px;
+    list-style: none;
+    img {
+      object-fit: cover;
+      width: 180px;
+      height: 180px;
+    }
+    .placeholder {
+      width: 180px;
+      height: 180px;
+      background-color: lightgray;
+    }
+    .info {
+      padding: 0 8px;
+    }
+  }
+
+  li:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}

@@ -3,5 +3,18 @@
 </h2>
 <button [routerLink]="['/create']">Add product</button>
 <ul>
-  <li *ngFor="let product of products | async">{{ product.name }}</li>
+  <li
+    *ngFor="let product of products | async"
+    [routerLink]="['/product/' + product.name]"
+    routerLinkActive="router-link-active"
+  >
+    <img *ngIf="product.img" [src]="product.img" />
+    <div *ngIf="!product.img" class="placeholder"></div>
+    <div class="info">
+      <h3>{{ product.title }}</h3>
+      <p>{{ product.decsription }}</p>
+      <p>{{ product.price }} $</p>
+      <p *ngIf="product.rating">Rating: {{ product.rating }} /10</p>
+    </div>
+  </li>
 </ul>

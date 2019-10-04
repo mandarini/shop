@@ -28,6 +28,7 @@ export class CreateProductComponent {
       this.productService
         .addProduct(this.newProductForm.value)
         .then(res => {
+          console.log(res);
           this.newProductForm.reset();
         })
         .catch(err => {

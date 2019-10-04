@@ -1,0 +1,51 @@
+<h2>Add a new product</h2>
+
+<form [formGroup]="newProductForm" (ngSubmit)="onSubmit()">
+  <input
+    type="text"
+    matInput
+    placeholder="Product name"
+    aria-label="Product name"
+    formControlName="name"
+    name="Product name"
+  />
+  <input
+    type="text"
+    matInput
+    placeholder="Product title"
+    aria-label="Product title"
+    formControlName="title"
+    name="Product title"
+  />
+  <input
+    type="text"
+    matInput
+    placeholder="Product decsription"
+    aria-label="Product decsription"
+    formControlName="decsription"
+    name="Product decsription"
+  />
+  <input
+    type="number"
+    matInput
+    placeholder="Product price"
+    aria-label="Product price"
+    formControlName="price"
+    name="Product price"
+  />
+  <input
+    type="text"
+    matInput
+    placeholder="Product image"
+    aria-label="Product image"
+    formControlName="img"
+    name="Product image"
+  />
+  <button
+    [ngClass]="{ disabled: newProductForm.invalid }"
+    [disabled]="newProductForm.invalid"
+    type="submit"
+  >
+    Add product
+  </button>
+</form>

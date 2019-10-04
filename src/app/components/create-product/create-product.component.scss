@@ -1,0 +1,31 @@
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 32px;
+}
+
+input {
+  margin-bottom: 8px;
+  padding: 8px 4px;
+  font-size: 12px;
+  border-radius: 4px;
+  box-shadow: none;
+  text-shadow: none;
+  border: 1px solid lightgray;
+}
+
+input:hover {
+  border-color: lightskyblue;
+}
+
+button {
+  margin-bottom: 16px;
+}
+
+button.disabled {
+  background-color: lightgrey;
+}
+
+button.disabled:hover {
+  background-color: lightgrey;
+}

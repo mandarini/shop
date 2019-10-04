@@ -10,10 +10,23 @@
     <p *ngIf="product.rating">Rating: {{ product.rating }} /10</p>
   </div>
   <div class="actions">
-    <button mat-raised-button color="primary" (click)="editing = true">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="editing = true"
+      *ngIf="!editing"
+    >
       <mat-icon>edit</mat-icon> Edit
     </button>
-    <button mat-raised-button color="warn">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="editing = false"
+      *ngIf="editing"
+    >
+      <mat-icon>cancel</mat-icon> Cancel
+    </button>
+    <button mat-raised-button color="warn" (click)="deleteDialog()">
       <mat-icon>delete</mat-icon> Delete
     </button>
   </div>

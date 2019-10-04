@@ -10,6 +10,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
+import { MatDialogModule } from "@angular/material/dialog";
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
@@ -21,6 +22,7 @@ import { UsersComponent } from "./components/manage/users/users.component";
 import { CreateProductComponent } from "./components/create-product/create-product.component";
 import { environment } from "src/environments/environment";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DeleteModalComponent } from "./components/delete-modal/delete-modal.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     ManageComponent,
     NewProductComponent,
     UsersComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    DeleteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +47,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MatToolbarModule,
     MatIconModule,
     FormsModule,
+    MatDialogModule,
     ReactiveFormsModule
   ],
+  entryComponents: [DeleteModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

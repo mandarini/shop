@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductsService } from "src/app/services/products.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Product } from "src/app/interfaces/product";
 import { Observable } from "rxjs";
+import { MatDialog } from "@angular/material/dialog";
+import { DeleteModalComponent } from "../delete-modal/delete-modal.component";
 
 @Component({
   selector: "app-product",
@@ -15,9 +17,13 @@ export class ProductComponent implements OnInit {
 
   editing: boolean = false;
 
+  deleting: boolean = false;
+
   constructor(
     private productService: ProductsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    public dialog: MatDialog
   ) {
     this.loading = true;
     this.productService
@@ -35,6 +41,29 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  deleteDialog() {
+    const dialogRef = this.dialog.open(DeleteModalComponent, {
+      width: "250px",
+      data: { product: this.product.title }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result === "OK") {
+        this.deleting = true;
+        this.productService
+          .deleteProduct(this.product.uid)
+          .then(res => {
+            this.router.navigate(["/home"]);
+            this.deleting = false;
+          })
+          .catch(err => {
+            this.deleting = false;
+            console.log(err);
+          });
+      }
+    });
+  }
 
   savingResponse(event: string) {
     if (event === "success") {

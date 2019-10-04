@@ -28,6 +28,10 @@ export class ProductsService {
     return this.productsSubject.asObservable();
   }
 
+  getProduct(product_id: string): Observable<any> {
+    return this.productsCollection.doc(product_id).valueChanges();
+  }
+
   addProduct(product: Product) {
     return this.productsCollection.add(product);
   }
@@ -36,7 +40,7 @@ export class ProductsService {
     return this.productsCollection.doc(product_id).delete();
   }
 
-  updateProduct(product: Product) {
-    return this.productsCollection.doc(product.uid).update(product);
+  updateProduct(product_uid: string, product: Product) {
+    return this.productsCollection.doc(product_uid).update(product);
   }
 }

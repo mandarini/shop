@@ -20,10 +20,10 @@
   <input
     type="text"
     matInput
-    placeholder="Product decsription"
-    aria-label="Product decsription"
-    formControlName="decsription"
-    name="Product decsription"
+    placeholder="Product description"
+    aria-label="Product description"
+    formControlName="description"
+    name="Product description"
   />
   <input
     type="number"
@@ -46,6 +46,6 @@
     [disabled]="newProductForm.invalid"
     type="submit"
   >
-    Add product
+    {{ edit_mode ? "Update product" : "Add product" }}
   </button>
 </form>

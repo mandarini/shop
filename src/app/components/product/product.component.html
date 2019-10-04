@@ -1,1 +1,32 @@
-<p>product works!</p>
+<div *ngIf="!loading && product" class="product-grid">
+  <h2>{{ product.title }}</h2>
+  <div class="image">
+    <img *ngIf="product.img" [src]="product.img" />
+    <div *ngIf="!product.img" class="placeholder"></div>
+  </div>
+  <div class="info">
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }} $</p>
+    <p *ngIf="product.rating">Rating: {{ product.rating }} /10</p>
+  </div>
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="editing = true">
+      <mat-icon>edit</mat-icon> Edit
+    </button>
+    <button mat-raised-button color="warn">
+      <mat-icon>delete</mat-icon> Delete
+    </button>
+  </div>
+</div>
+
+<div *ngIf="loading" class="general-spinner">
+  <div class="spinner"></div>
+  Loading product
+</div>
+
+<app-create-product
+  *ngIf="!loading && product && editing"
+  [edit_mode]="true"
+  [product]="product"
+  (done_saving)="savingResponse($event)"
+></app-create-product>

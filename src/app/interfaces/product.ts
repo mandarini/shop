@@ -2,7 +2,7 @@ export interface Product {
   uid?: string;
   name: string;
   title: string;
-  decsription: string;
+  description: string;
   price: number;
   rating?: number;
   img?: string;

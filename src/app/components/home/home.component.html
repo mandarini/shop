@@ -5,14 +5,14 @@
 <ul>
   <li
     *ngFor="let product of products | async"
-    [routerLink]="['/product/' + product.name]"
+    [routerLink]="['/product/' + product.uid]"
     routerLinkActive="router-link-active"
   >
     <img *ngIf="product.img" [src]="product.img" />
     <div *ngIf="!product.img" class="placeholder"></div>
     <div class="info">
       <h3>{{ product.title }}</h3>
-      <p>{{ product.decsription }}</p>
+      <p>{{ product.description }}</p>
       <p>{{ product.price }} $</p>
       <p *ngIf="product.rating">Rating: {{ product.rating }} /10</p>
     </div>

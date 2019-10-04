@@ -23,3 +23,29 @@ button {
 button:hover {
   background-color: #91fcc1;
 }
+
+.general-spinner {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  animation: spin 2s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,35 @@
+ul {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  li {
+    margin-bottom: 16px;
+    list-style-type: none;
+    padding: 4px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .user {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: lightgray;
+      margin-right: 16px;
+      padding: 8px;
+      font-size: 0.8em;
+      img {
+        object-fit: cover;
+        border-radius: 50%;
+        width: 90px;
+        height: 90px;
+      }
+      .placeholder {
+        width: 90px;
+        height: 90px;
+        background-color: lightgray;
+      }
+    }
+  }
+}

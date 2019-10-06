@@ -1,1 +1,30 @@
-<app-create-comment [product]="product"></app-create-comment>>
+<app-create-comment [product]="product"></app-create-comment>
+<ul *ngIf="product.comments && product.comments.length > 0">
+  <li *ngFor="let comment of product.comments">
+    <div class="user">
+      <img
+        *ngIf="comment.user && comment.user.photoURL"
+        [src]="comment.user.photoURL"
+      />
+      <div
+        *ngIf="!comment.user || !comment.user.photoURL"
+        class="placeholder"
+      ></div>
+      <span *ngIf="comment.user && comment.user.displayName">
+        {{ comment.user.displayName }}
+      </span>
+      <span *ngIf="!comment.user || !comment.user.displayName">
+        Anonymous
+      </span>
+    </div>
+    <div class="contents">
+      <h4>{{ comment.title }}</h4>
+      <p>
+        {{ comment.text }}
+      </p>
+      <p>
+        <em>Posted on: {{ comment.date | date: "medium" }}</em>
+      </p>
+    </div>
+  </li>
+</ul>

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ProductsService } from "src/app/services/products.service";
 import { Product } from "src/app/interfaces/product";
 import { AngularFireAuth } from "@angular/fire/auth";
+import { NotificationsService } from "src/app/services/notification.service";
 
 @Component({
   selector: "app-create-comment",
@@ -19,7 +20,8 @@ export class CreateCommentComponent {
   constructor(
     private fb: FormBuilder,
     private productService: ProductsService,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private notificationService: NotificationsService
   ) {
     this.newCommentForm = this.fb.group({
       text: ["", [Validators.required]],
@@ -48,11 +50,16 @@ export class CreateCommentComponent {
         .createComment(this.product.uid, comment)
         .then(res => {
           console.log(res);
+          this.notificationService.setNotification("Comment posted!", "OK");
           this.done_saving.emit("success");
           this.newCommentForm.reset();
         })
         .catch(err => {
           this.done_saving.emit("error");
+          this.notificationService.setNotification(
+            "Error posting comment!",
+            "OK"
+          );
           console.log("There was an error submitting:", err);
         });
     }

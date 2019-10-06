@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ProductsService } from "src/app/services/products.service";
 import { Product } from "src/app/interfaces/product";
+import { NotificationsService } from "src/app/services/notification.service";
 
 @Component({
   selector: "app-create-product",
@@ -18,7 +19,8 @@ export class CreateProductComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private notificationService: NotificationsService
   ) {
     this.newProductForm = this.fb.group({
       name: ["", [Validators.required]],
@@ -48,10 +50,14 @@ export class CreateProductComponent implements OnInit {
           .addProduct(this.newProductForm.value)
           .then(res => {
             console.log(res);
+            this.notificationService.setNotification(
+              "Product created successfully!"
+            );
             this.newProductForm.reset();
           })
           .catch(err => {
             console.log("There was an error submitting:", err);
+            this.notificationService.setNotification("Error creating product!");
           });
       } else {
         this.productService
@@ -59,9 +65,13 @@ export class CreateProductComponent implements OnInit {
           .then(res => {
             console.log(res);
             this.done_saving.emit("success");
+            this.notificationService.setNotification("Product info updated!");
             this.newProductForm.reset();
           })
           .catch(err => {
+            this.notificationService.setNotification(
+              "Error updating product info!"
+            );
             this.done_saving.emit("error");
             console.log("There was an error submitting:", err);
           });

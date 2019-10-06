@@ -6,6 +6,7 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { DeleteModalComponent } from "../delete-modal/delete-modal.component";
+import { NotificationsService } from "src/app/services/notification.service";
 
 @Component({
   selector: "app-product",
@@ -25,6 +26,7 @@ export class ProductComponent implements OnInit {
     private productService: ProductsService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private notificationService: NotificationsService,
     public dialog: MatDialog
   ) {
     this.loading = true;
@@ -56,10 +58,16 @@ export class ProductComponent implements OnInit {
         this.productService
           .deleteProduct(this.product.uid)
           .then(res => {
+            this.notificationService.setNotification(
+              "Product deleted successfully!"
+            );
             this.router.navigate(["/home"]);
             this.deleting = false;
           })
           .catch(err => {
+            this.notificationService.setNotification(
+              "Could not delete product."
+            );
             this.deleting = false;
             console.log(err);
           });
@@ -89,6 +97,16 @@ export class ProductComponent implements OnInit {
   savingResponse(event: string) {
     if (event === "success") {
       this.editing = false;
+      this.productService
+        .getFullProduct(this.activatedRoute.snapshot.params["id"])
+        .toPromise()
+        .then((product: FullProduct) => {
+          console.log(product);
+          this.product = product;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
     if (event === "error") {
       console.log("error");

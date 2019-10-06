@@ -1,4 +1,7 @@
-<app-create-comment [product]="product"></app-create-comment>
+<app-create-comment
+  [product]="product"
+  (done_saving)="done_saving.emit($event)"
+></app-create-comment>
 <ul *ngIf="product.comments && product.comments.length > 0">
   <li *ngFor="let comment of product.comments">
     <div class="user">

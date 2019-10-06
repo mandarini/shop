@@ -15,6 +15,7 @@ import { DeleteModalComponent } from "../delete-modal/delete-modal.component";
 export class ProductComponent implements OnInit {
   product: FullProduct;
   loading: boolean;
+  loading_comments: boolean = false;
 
   editing: boolean = false;
 
@@ -29,17 +30,16 @@ export class ProductComponent implements OnInit {
     this.loading = true;
     this.productService
       .getFullProduct(this.activatedRoute.snapshot.params["id"])
-      .subscribe(
-        (product: FullProduct) => {
-          console.log(product);
-          this.product = product;
-          this.loading = false;
-        },
-        error => {
-          this.loading = false;
-          console.log(error);
-        }
-      );
+      .toPromise()
+      .then((product: FullProduct) => {
+        console.log(product);
+        this.product = product;
+        this.loading = false;
+      })
+      .catch(error => {
+        this.loading = false;
+        console.log(error);
+      });
   }
 
   ngOnInit() {}
@@ -65,6 +65,25 @@ export class ProductComponent implements OnInit {
           });
       }
     });
+  }
+
+  doneSaving(event: string) {
+    console.log(event);
+    if (event === "success") {
+      this.loading_comments = true;
+      this.productService
+        .getFullProduct(this.activatedRoute.snapshot.params["id"])
+        .toPromise()
+        .then((product: FullProduct) => {
+          console.log(product);
+          this.product = product;
+          this.loading_comments = false;
+        })
+        .catch(error => {
+          this.loading_comments = false;
+          console.log(error);
+        });
+    }
   }
 
   savingResponse(event: string) {

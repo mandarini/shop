@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { Product } from "src/app/interfaces/product";
 import { FullProduct } from "src/app/services/products.service";
 
@@ -9,7 +9,10 @@ import { FullProduct } from "src/app/services/products.service";
 })
 export class CommentsComponent implements OnInit {
   @Input() product: FullProduct;
+  @Output() done_saving: EventEmitter<string> = new EventEmitter<string>(null);
   constructor() {}
 
   ngOnInit() {}
+
+
 }

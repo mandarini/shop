@@ -45,6 +45,12 @@
 ></app-create-product>
 
 <app-comments
-  *ngIf="!loading && product && !editing"
+  *ngIf="!loading && product && !editing && !loading_comments"
   [product]="product"
+  (done_saving)="doneSaving($event)"
 ></app-comments>
+
+<div *ngIf="loading_comments" class="general-spinner">
+  <div class="spinner"></div>
+  Loading new comments.
+</div>

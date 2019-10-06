@@ -1,1 +1,26 @@
-<p>users works!</p>
+<h2>Users</h2>
+
+<ul>
+  <li *ngFor="let user of users | async">
+    <div class="photo">
+      <img *ngIf="user.photoURL" [src]="user.photoURL" />
+      <div *ngIf="!user.photoURL" class="placeholder"></div>
+    </div>
+    <div class="details">
+      <p>Display Name: {{ user.displayName }}</p>
+      <p>Email: {{ user.email }}</p>
+    </div>
+    <div class="role">
+      <label id="radio-label">User role</label>
+      <mat-radio-group
+        aria-labelledby="radio-label"
+        [(ngModel)]="user.role"
+        (change)="changed($event, user.uid)"
+      >
+        <mat-radio-button *ngFor="let role of roles" [value]="role">
+          {{ role }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </li>
+</ul>

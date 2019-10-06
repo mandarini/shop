@@ -29,7 +29,7 @@ export class AppComponent {
             email: user.email,
             displayName: user.displayName,
             photoURL: user.photoURL,
-            role: user_full.role ? user_full.role : ""
+            role: user_full.role ? user_full.role : "plain"
           };
           this.userService.setActiveUser(custom_user);
         } else {

@@ -26,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DeleteModalComponent } from "./components/delete-modal/delete-modal.component";
 import { CommentsComponent } from "./components/product/comments/comments.component";
 import { CreateCommentComponent } from './components/product/comments/create-comment/create-comment.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CreateCommentComponent } from './components/product/comments/create-com
     AngularFireAuthModule,
     MatButtonModule,
     MatToolbarModule,
+    MatRadioModule,
     MatIconModule,
     FormsModule,
     MatDialogModule,

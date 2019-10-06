@@ -9,13 +9,24 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { UserComment } from "../interfaces/comment";
 import { AngularFireFunctions } from "@angular/fire/functions";
 
+export interface FullProduct {
+  uid?: string;
+  name: string;
+  title: string;
+  description: string;
+  price: number;
+  rating?: number;
+  img?: string;
+  comments: UserComment[];
+}
+
 @Injectable({
   providedIn: "root"
 })
 export class ProductsService {
   productsCollection: AngularFirestoreCollection<Product>;
   productsSubject: BehaviorSubject<Product[]>;
-  private callable_CreateComment: CallableFunction;
+  // private callable_CreateComment: CallableFunction;
   private callable_getFullProduct: CallableFunction;
 
   constructor(
@@ -39,6 +50,10 @@ export class ProductsService {
 
   getProduct(product_id: string): Observable<any> {
     return this.productsCollection.doc(product_id).valueChanges();
+  }
+
+  getFullProduct(product_id: string): Observable<FullProduct> {
+    return this.callable_getFullProduct({ product_id: product_id });
   }
 
   addProduct(product: Product) {

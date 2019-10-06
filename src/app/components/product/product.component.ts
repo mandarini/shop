@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ProductsService } from "src/app/services/products.service";
+import {
+  ProductsService,
+  FullProduct
+} from "src/app/services/products.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Product } from "src/app/interfaces/product";
-import { Observable } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
 import { DeleteModalComponent } from "../delete-modal/delete-modal.component";
 
@@ -12,7 +13,7 @@ import { DeleteModalComponent } from "../delete-modal/delete-modal.component";
   styleUrls: ["./product.component.scss"]
 })
 export class ProductComponent implements OnInit {
-  product: Product;
+  product: FullProduct;
   loading: boolean;
 
   editing: boolean = false;
@@ -27,9 +28,10 @@ export class ProductComponent implements OnInit {
   ) {
     this.loading = true;
     this.productService
-      .getProduct(this.activatedRoute.snapshot.params["id"])
+      .getFullProduct(this.activatedRoute.snapshot.params["id"])
       .subscribe(
-        (product: Product) => {
+        (product: FullProduct) => {
+          console.log(product);
           this.product = product;
           this.loading = false;
         },

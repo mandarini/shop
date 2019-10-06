@@ -26,8 +26,10 @@ export class CreateCommentComponent {
       title: ["", []]
     });
 
-    this.currentUser = this.afAuth.auth.currentUser.displayName
+    this.currentUser = this.afAuth.auth.currentUser
       ? this.afAuth.auth.currentUser.displayName
+        ? this.afAuth.auth.currentUser.displayName
+        : "anonymous"
       : "anonymous";
   }
 
@@ -35,8 +37,10 @@ export class CreateCommentComponent {
     if (this.newCommentForm.valid) {
       let comment = {
         ...this.newCommentForm.value,
-        user_email: this.afAuth.auth.currentUser.email
+        user_email: this.afAuth.auth.currentUser
           ? this.afAuth.auth.currentUser.email
+            ? this.afAuth.auth.currentUser.email
+            : "anonymous"
           : "anonymous",
         date: Date.now()
       };

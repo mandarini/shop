@@ -25,8 +25,10 @@ import { environment } from "src/environments/environment";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DeleteModalComponent } from "./components/delete-modal/delete-modal.component";
 import { CommentsComponent } from "./components/product/comments/comments.component";
-import { CreateCommentComponent } from './components/product/comments/create-comment/create-comment.component';
-import {MatRadioModule} from '@angular/material/radio';
+import { CreateCommentComponent } from "./components/product/comments/create-comment/create-comment.component";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {MatRadioModule} from '@angular/material/radio';
     CreateProductComponent,
     DeleteModalComponent,
     CommentsComponent,
-    CreateCommentComponent
+    CreateCommentComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatIconModule,
     FormsModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   entryComponents: [DeleteModalComponent],
   providers: [],

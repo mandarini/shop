@@ -11,6 +11,7 @@ import { User } from "./interfaces/user";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
+  user: User;
   constructor(
     productService: ProductsService,
     public afAuth: AngularFireAuth,
@@ -31,6 +32,7 @@ export class AppComponent {
             photoURL: user.photoURL,
             role: user_full.role ? user_full.role : "plain"
           };
+          this.user = custom_user;
           this.userService.setActiveUser(custom_user);
         } else {
           let custom_user: User = {
@@ -39,6 +41,7 @@ export class AppComponent {
             displayName: user.displayName,
             photoURL: user.photoURL
           };
+          this.user = custom_user;
           this.userService.setActiveUser(custom_user);
         }
       });

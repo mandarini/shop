@@ -3,6 +3,7 @@ import { UsersService } from "src/app/services/users.service";
 import { Observable } from "rxjs";
 import { User } from "src/app/interfaces/user";
 import { MatRadioChange } from "@angular/material/radio";
+import { NotificationsService } from "src/app/services/notification.service";
 
 @Component({
   selector: "app-users",
@@ -13,7 +14,10 @@ export class UsersComponent implements OnInit {
   users: Observable<User[]> = this.userService.getAllUsers();
   roles: string[] = this.userService.getUserRoles();
 
-  constructor(private userService: UsersService) {}
+  constructor(
+    private userService: UsersService,
+    private notificationService: NotificationsService
+  ) {}
 
   ngOnInit() {}
 
@@ -23,8 +27,16 @@ export class UsersComponent implements OnInit {
       .changeUserRole(event.value, user_id)
       .then(res => {
         console.log(res);
+        this.notificationService.setNotification(
+          `User role changed to: ${event.value}`,
+          "OK"
+        );
       })
       .catch(error => {
+        this.notificationService.setNotification(
+          `There was an error changing the role.`,
+          "OK"
+        );
         console.log(error);
       });
   }

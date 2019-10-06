@@ -6,10 +6,17 @@
       <mat-icon role="link" tabindex="0" routerLink="login"
         >account_circle</mat-icon
       >
-      <mat-icon role="link" tabindex="0" routerLink="manage">settings</mat-icon>
+      <mat-icon
+        role="link"
+        tabindex="0"
+        routerLink="manage"
+        *ngIf="user && user.role === 'super_admin'"
+        >settings</mat-icon
+      >
     </nav>
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="content">
   <router-outlet></router-outlet>
 </div>
+<app-notification></app-notification>

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireFunctionsModule } from "@angular/fire/functions";
 
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -19,10 +20,12 @@ import { LoginComponent } from "./components/login/login.component";
 import { ManageComponent } from "./components/manage/manage.component";
 import { NewProductComponent } from "./components/manage/new-product/new-product.component";
 import { UsersComponent } from "./components/manage/users/users.component";
-import { CreateProductComponent } from "./components/create-product/create-product.component";
+import { CreateProductComponent } from "./components/product/create-product/create-product.component";
 import { environment } from "src/environments/environment";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DeleteModalComponent } from "./components/delete-modal/delete-modal.component";
+import { CommentsComponent } from "./components/product/comments/comments.component";
+import { CreateCommentComponent } from './components/product/comments/create-comment/create-comment.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { DeleteModalComponent } from "./components/delete-modal/delete-modal.com
     NewProductComponent,
     UsersComponent,
     CreateProductComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    CommentsComponent,
+    CreateCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +47,7 @@ import { DeleteModalComponent } from "./components/delete-modal/delete-modal.com
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireFunctionsModule,
     AngularFireAuthModule,
     MatButtonModule,
     MatToolbarModule,

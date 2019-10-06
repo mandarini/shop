@@ -43,3 +43,8 @@
   [product]="product"
   (done_saving)="savingResponse($event)"
 ></app-create-product>
+
+<app-comments
+  *ngIf="!loading && product && !editing"
+  [product]="product"
+></app-comments>

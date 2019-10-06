@@ -4,7 +4,7 @@ import { HomeComponent } from "./components/home/home.component";
 import { ProductComponent } from "./components/product/product.component";
 import { LoginComponent } from "./components/login/login.component";
 import { ManageComponent } from "./components/manage/manage.component";
-import { CreateProductComponent } from "./components/create-product/create-product.component";
+import { CreateProductComponent } from "./components/product/create-product/create-product.component";
 
 const routes: Routes = [
   {

@@ -1,10 +1,13 @@
 import { Injectable } from "@angular/core";
 import {
   AngularFirestore,
-  AngularFirestoreCollection
+  AngularFirestoreCollection,
+  DocumentData
 } from "@angular/fire/firestore";
 import { Product } from "../interfaces/product";
 import { BehaviorSubject, Observable } from "rxjs";
+import { UserComment } from "../interfaces/comment";
+import { AngularFireFunctions } from "@angular/fire/functions";
 
 @Injectable({
   providedIn: "root"
@@ -12,10 +15,16 @@ import { BehaviorSubject, Observable } from "rxjs";
 export class ProductsService {
   productsCollection: AngularFirestoreCollection<Product>;
   productsSubject: BehaviorSubject<Product[]>;
+  private callable_CreateComment: CallableFunction;
+  private callable_getFullProduct: CallableFunction;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(
+    private afs: AngularFirestore,
+    private fns: AngularFireFunctions
+  ) {
     this.productsCollection = this.afs.collection<Product>("products");
     this.productsSubject = new BehaviorSubject(null);
+    this.callable_getFullProduct = this.fns.httpsCallable("getFullProduct");
   }
 
   getAllProductsInit(): Observable<Product[]> {
@@ -42,5 +51,19 @@ export class ProductsService {
 
   updateProduct(product_uid: string, product: Product) {
     return this.productsCollection.doc(product_uid).update(product);
+  }
+
+  createComment(product_uid: string, comment: {}) {
+    return this.productsCollection
+      .doc(product_uid)
+      .collection("comments")
+      .add(comment);
+  }
+
+  getAllComments(product_uid: string): Observable<DocumentData[]> {
+    return this.productsCollection
+      .doc(product_uid)
+      .collection("comments")
+      .valueChanges();
   }
 }

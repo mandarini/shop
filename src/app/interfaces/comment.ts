@@ -1,6 +1,8 @@
-export interface Comment {
+import { User } from "./user";
+
+export interface UserComment {
   uid?: string;
-  user_uid: string;
+  user: User;
   text: string;
   title: string;
   date: string;

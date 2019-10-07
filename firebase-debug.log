@@ -1,0 +1,88 @@
+[debug] [2019-10-07T15:04:05.814Z] ----------------------------------------------------------------------
+[debug] [2019-10-07T15:04:05.815Z] Command:       /Users/katerinaskroumpelou/.nvm/versions/node/v10.15.3/bin/node /Users/katerinaskroumpelou/.nvm/versions/node/v10.15.3/bin/firebase deploy
+[debug] [2019-10-07T15:04:05.816Z] CLI Version:   7.3.2
+[debug] [2019-10-07T15:04:05.816Z] Platform:      darwin
+[debug] [2019-10-07T15:04:05.816Z] Node Version:  v10.15.3
+[debug] [2019-10-07T15:04:05.816Z] Time:          Mon Oct 07 2019 18:04:05 GMT+0300 (Eastern European Summer Time)
+[debug] [2019-10-07T15:04:05.816Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-10-07T15:04:05.821Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-10-07T15:04:05.821Z] > authorizing via signed-in user
+[debug] [2019-10-07T15:04:05.821Z] [iam] checking project shop-katerina for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-10-07T15:04:05.823Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/shop-katerina:testIamPermissions  
+
+[debug] [2019-10-07T15:04:06.903Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-07T15:04:06.905Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/shop-katerina  
+ 
+[debug] [2019-10-07T15:04:07.384Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'shop-katerina'...
+[info] 
+[info] i  deploying firestore, functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] ✔  functions: Finished running predeploy script.
+[info] i  firestore: checking firestore.rules for compilation errors...
+[info] i  firestore: reading indexes from firestore.indexes.json...
+[debug] [2019-10-07T15:04:13.423Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/shop-katerina:test  
+
+[debug] [2019-10-07T15:04:14.516Z] <<< HTTP RESPONSE 200
+[info] ✔  firestore: rules file firestore.rules compiled successfully
+[debug] [2019-10-07T15:04:14.518Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "serve": "npm run build && firebase serve --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^8.0.0",
+    "firebase-functions": "^3.1.0"
+  },
+  "devDependencies": {
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2019-10-07T15:04:14.519Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/shop-katerina/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2019-10-07T15:04:14.520Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/shop-katerina/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2019-10-07T15:04:15.644Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-07T15:04:15.726Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2019-10-07T15:04:15.727Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/shop-katerina/adminSdkConfig  
+ 
+[debug] [2019-10-07T15:04:16.091Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-07T15:04:16.092Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/shop-katerina/versions  
+
+[debug] [2019-10-07T15:04:17.714Z] <<< HTTP RESPONSE 200
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2019-10-07T15:04:17.717Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/shop-katerina/rulesets  
+
+[debug] [2019-10-07T15:04:17.717Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/shop-katerina/databases/(default)/collectionGroups/-/indexes  
+ 
+[debug] [2019-10-07T15:04:18.142Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-07T15:04:18.143Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/shop-katerina/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false  
+ 
+[debug] [2019-10-07T15:04:18.460Z] <<< HTTP RESPONSE 200
+[info] ✔  firestore: deployed indexes in firestore.indexes.json successfully
+[debug] [2019-10-07T15:04:18.919Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-07T15:04:18.920Z] [rules] created ruleset projects/shop-katerina/rulesets/4739f031-fc6f-4efe-8b6c-8c8520f9a996
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2019-10-07T15:04:18.923Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/shop-katerina/configs  
+ 
+[debug] [2019-10-07T15:04:19.380Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (45.25 KB) for uploading
+[debug] [2019-10-07T15:04:19.776Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/shop-katerina/locations/us-central1/functions:generateUploadUrl  
+ 

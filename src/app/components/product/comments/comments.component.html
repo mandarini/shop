@@ -22,6 +22,9 @@
     </div>
     <div class="contents">
       <h4>{{ comment.title }}</h4>
+      <p *ngIf="comment.rating">
+        Rating: <b>{{ comment.rating }} / 5</b>
+      </p>
       <p>
         {{ comment.text }}
       </p>

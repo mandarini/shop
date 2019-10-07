@@ -6,4 +6,5 @@ export interface UserComment {
   text: string;
   title: string;
   date: string;
+  rating: number;
 }

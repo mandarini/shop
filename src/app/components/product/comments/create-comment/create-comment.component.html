@@ -20,6 +20,14 @@
     formControlName="text"
     name="Comment text"
   />
+  <input
+    type="number"
+    matInput
+    placeholder="Rating"
+    aria-label="Rating"
+    formControlName="rating"
+    name="Rating"
+  />
 
   <button
     [ngClass]="{ disabled: newCommentForm.invalid }"

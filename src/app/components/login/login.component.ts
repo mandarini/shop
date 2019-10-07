@@ -28,7 +28,6 @@ export class LoginComponent {
   requestPermission() {
     this.afMessaging.requestToken.subscribe(
       token => {
-        // this.db.collection('fcmTokens')
         if (token) {
           console.log("Permission granted! Save to the server!", token);
           // Save the Device Token to the datastore.
@@ -39,7 +38,7 @@ export class LoginComponent {
             this.afs
               .collection("fcmTokens")
               .doc(token)
-              .set({ uid: user.uid });
+              .set({ uid: user ? user.uid : "anonymous" });
           });
         } else {
           // Need to request permissions to show notifications.

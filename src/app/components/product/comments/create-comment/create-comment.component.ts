@@ -25,7 +25,8 @@ export class CreateCommentComponent {
   ) {
     this.newCommentForm = this.fb.group({
       text: ["", [Validators.required]],
-      title: ["", []]
+      title: ["", []],
+      rating: [null, Validators.required]
     });
 
     this.currentUser = this.afAuth.auth.currentUser

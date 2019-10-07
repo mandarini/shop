@@ -1,0 +1,28 @@
+[debug] [2019-10-07T10:24:56.017Z] ----------------------------------------------------------------------
+[debug] [2019-10-07T10:24:56.018Z] Command:       /Users/katerinaskroumpelou/.nvm/versions/node/v10.15.3/bin/node /Users/katerinaskroumpelou/.nvm/versions/node/v10.15.3/bin/firebase deploy
+[debug] [2019-10-07T10:24:56.018Z] CLI Version:   7.3.2
+[debug] [2019-10-07T10:24:56.018Z] Platform:      darwin
+[debug] [2019-10-07T10:24:56.018Z] Node Version:  v10.15.3
+[debug] [2019-10-07T10:24:56.021Z] Time:          Mon Oct 07 2019 13:24:56 GMT+0300 (Eastern European Summer Time)
+[debug] [2019-10-07T10:24:56.021Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-10-07T10:24:56.026Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-10-07T10:24:56.026Z] > authorizing via signed-in user
+[debug] [2019-10-07T10:24:56.027Z] [iam] checking project shop-katerina for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-10-07T10:24:56.028Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/shop-katerina:testIamPermissions  
+
+[debug] [2019-10-07T10:24:57.152Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-07T10:24:57.154Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/shop-katerina  
+ 
+[debug] [2019-10-07T10:24:57.636Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'shop-katerina'...
+[info] 
+[info] i  deploying firestore, functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] ✔  functions: Finished running predeploy script.
+[info] i  firestore: checking firestore.rules for compilation errors...
+[info] i  firestore: reading indexes from firestore.indexes.json...
+[debug] [2019-10-07T10:25:03.209Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/shop-katerina:test  
+

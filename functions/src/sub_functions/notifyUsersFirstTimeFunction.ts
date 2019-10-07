@@ -2,18 +2,11 @@ import * as admin from "firebase-admin";
 
 const db = admin.firestore();
 
-export async function notifyUsersFunction(change: any, context: any) {
-  const data = change.after.data();
-
-  /**
-   * Find user display name
-   * and on click send user to product page
-   */
-
+export async function notifyUsersFirstTimeFunction(change: any, context: any) {
   const payload = {
     notification: {
-      title: `New comment!`,
-      body: `New comment posted by ${data.user_email}`,
+      title: `Success!`,
+      body: `You will now receive notifications!`,
       click_action: "https://shop-katerina.web.app/"
     }
   };

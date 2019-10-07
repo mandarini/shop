@@ -7,6 +7,7 @@ import { addProductIdToProductFunction } from "./sub_functions/addProductIdToPro
 import { createUserFunction } from "./sub_functions/createUserFunction";
 import { getFullProductFunction } from "./sub_functions/getFullProductFunction";
 import { notifyUsersFunction } from "./sub_functions/notifyUsersFunction";
+import { notifyUsersFirstTimeFunction } from "./sub_functions/notifyUsersFirstTimeFunction";
 
 export const addProductIdToProduct = functions.firestore
   .document("products/{productId}")
@@ -19,3 +20,7 @@ export const getFullProduct = functions.https.onCall(getFullProductFunction);
 export const notifyUsers = functions.firestore
   .document("products/{productId}/comments/{commentId}")
   .onWrite(notifyUsersFunction);
+
+export const notifyUsersFistTime = functions.firestore
+  .document("fcmTokens")
+  .onWrite(notifyUsersFirstTimeFunction);

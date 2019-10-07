@@ -1,4 +1,4 @@
-<div *ngIf="afAuth.user | async as user; else showLogin">
+<div class="hello" *ngIf="afAuth.user | async as user; else showLogin">
   <h1>Hello {{ user.displayName }}!</h1>
   <button (click)="logout()">Logout</button>
 </div>
@@ -6,10 +6,11 @@
   <p>Please login.</p>
   <button (click)="login()">Login with Google</button>
 </ng-template>
-
-<button (click)="requestPermission()">
-  Receive push notifications for new comments
-</button>
-<button (click)="deleteMyToken()">
-  Stop receiving push notifications for new comments
-</button>
+<div class="notifications">
+  <button (click)="requestPermission()">
+    Receive push notifications for new comments
+  </button>
+  <button (click)="deleteMyToken()">
+    Stop receiving push notifications for new comments
+  </button>
+</div>

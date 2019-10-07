@@ -34,13 +34,12 @@ export class ProductComponent implements OnInit {
       .getFullProduct(this.activatedRoute.snapshot.params["id"])
       .toPromise()
       .then((product: FullProduct) => {
-        console.log(product);
         this.product = product;
         this.loading = false;
       })
       .catch(error => {
         this.loading = false;
-        console.log(error);
+        console.log("Getting error:", error);
       });
   }
 
@@ -52,44 +51,50 @@ export class ProductComponent implements OnInit {
       data: { product: this.product.title }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result === "OK") {
-        this.deleting = true;
-        this.productService
-          .deleteProduct(this.product.uid)
-          .then(res => {
-            this.notificationService.setNotification(
-              "Product deleted successfully!"
-            );
-            this.router.navigate(["/home"]);
-            this.deleting = false;
-          })
-          .catch(err => {
-            this.notificationService.setNotification(
-              "Could not delete product."
-            );
-            this.deleting = false;
-            console.log(err);
-          });
+    dialogRef.afterClosed().subscribe(
+      result => {
+        if (result && result === "OK") {
+          this.deleting = true;
+          this.productService
+            .deleteProduct(this.product.uid)
+            .then(res => {
+              this.notificationService.setNotification(
+                "Product deleted successfully!",
+                "OK"
+              );
+              this.router.navigate(["/home"]);
+              this.deleting = false;
+            })
+            .catch(error => {
+              this.notificationService.setNotification(
+                "Could not delete product.",
+                "OK",
+                error
+              );
+              this.deleting = false;
+              console.log("Product deletion error:", error);
+            });
+        }
+      },
+      error => {
+        console.log("Dialog error:", error);
       }
-    });
+    );
   }
 
   doneSaving(event: string) {
-    console.log(event);
     if (event === "success") {
       this.loading_comments = true;
       this.productService
         .getFullProduct(this.activatedRoute.snapshot.params["id"])
         .toPromise()
         .then((product: FullProduct) => {
-          console.log(product);
           this.product = product;
           this.loading_comments = false;
         })
         .catch(error => {
           this.loading_comments = false;
-          console.log(error);
+          console.log("Getting error:", error);
         });
     }
   }
@@ -101,15 +106,14 @@ export class ProductComponent implements OnInit {
         .getFullProduct(this.activatedRoute.snapshot.params["id"])
         .toPromise()
         .then((product: FullProduct) => {
-          console.log(product);
           this.product = product;
         })
         .catch(error => {
-          console.log(error);
+          console.log("Getting error:", error);
         });
     }
     if (event === "error") {
-      console.log("error");
+      console.log("Error");
     }
   }
 }

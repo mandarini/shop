@@ -69,6 +69,7 @@ export class ProductsService {
   }
 
   createComment(product_uid: string, comment: {}) {
+    console.log(comment);
     return this.productsCollection
       .doc(product_uid)
       .collection("comments")

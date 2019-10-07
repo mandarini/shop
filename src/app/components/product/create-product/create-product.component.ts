@@ -49,31 +49,35 @@ export class CreateProductComponent implements OnInit {
         this.productService
           .addProduct(this.newProductForm.value)
           .then(res => {
-            console.log(res);
             this.notificationService.setNotification(
               "Product created successfully!"
             );
             this.newProductForm.reset();
           })
-          .catch(err => {
-            console.log("There was an error submitting:", err);
-            this.notificationService.setNotification("Error creating product!");
+          .catch(error => {
+            console.log("Error creating:", error);
+            this.notificationService.setNotification(
+              "Error creating product!",
+              "OK",
+              error
+            );
           });
       } else {
         this.productService
           .updateProduct(this.product.uid, this.newProductForm.value)
           .then(res => {
-            console.log(res);
             this.done_saving.emit("success");
             this.notificationService.setNotification("Product info updated!");
             this.newProductForm.reset();
           })
-          .catch(err => {
+          .catch(error => {
             this.notificationService.setNotification(
-              "Error updating product info!"
+              "Error updating product info!",
+              "OK",
+              error
             );
             this.done_saving.emit("error");
-            console.log("There was an error submitting:", err);
+            console.log("Error submitting:", error);
           });
       }
     }

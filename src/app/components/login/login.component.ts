@@ -18,6 +18,7 @@ export class LoginComponent {
     private afs: AngularFirestore,
     private notificationService: NotificationsService
   ) {}
+
   login() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
@@ -30,7 +31,6 @@ export class LoginComponent {
       token => {
         if (token) {
           console.log("Permission granted! Save to the server!", token);
-          // Save the Device Token to the datastore.
           this.notificationService.setNotification(
             "You will now receive push notifications on this device!"
           );
@@ -38,32 +38,45 @@ export class LoginComponent {
             this.afs
               .collection("fcmTokens")
               .doc(token)
-              .set({ uid: user ? user.uid : "anonymous" });
+              .set({ uid: user ? user.uid : "anonymous" })
+              .then(res => {})
+              .catch(error => {
+                console.log("Error setting token:", error);
+              });
           });
         } else {
-          // Need to request permissions to show notifications.
           return this.requestPermission();
         }
       },
       error => {
-        console.error(error);
+        console.log("Error getting token:", error);
       }
     );
   }
   deleteMyToken() {
     this.afMessaging.getToken
       .pipe(mergeMap(token => this.afMessaging.deleteToken(token)))
-      .subscribe(token => {
-        this.notificationService.setNotification(
-          "You will no longer receive push notifications on this device!"
-        );
-        console.log("Deleted!");
-      });
+      .subscribe(
+        token => {
+          this.notificationService.setNotification(
+            "You will no longer receive push notifications on this device!"
+          );
+          console.log("Deleted!");
+        },
+        error => {
+          console.log("Error deleting device token", error);
+        }
+      );
   }
 
   listen() {
-    this.afMessaging.messages.subscribe(message => {
-      console.log(message);
-    });
+    this.afMessaging.messages.subscribe(
+      message => {
+        console.log(message);
+      },
+      error => {
+        console.log("Error getting messages: ", error);
+      }
+    );
   }
 }

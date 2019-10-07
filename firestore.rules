@@ -35,10 +35,10 @@ service cloud.firestore {
              request.resource.data.title is string && 
              request.resource.data.title.size() > 2 && 
              request.resource.data.title.size() < 120 &&
-             ((request.auth.uid && request.resource.data.user_email == request.auth.token.email) ||
+             ((request.auth.uid != null && request.resource.data.user_email == request.auth.token.email) ||
               (request.auth.uid == null && request.resource.data.user_email == 'anonymous' ));
     }
-
+    
     function dontChangeRating() {
       return request.resource.data.rating == resource.data.rating;
     }

@@ -55,13 +55,14 @@ export class CreateCommentComponent {
           this.done_saving.emit("success");
           this.newCommentForm.reset();
         })
-        .catch(err => {
+        .catch(error => {
           this.done_saving.emit("error");
           this.notificationService.setNotification(
             "Error posting comment!",
-            "OK"
+            "OK",
+            error
           );
-          console.log("There was an error submitting:", err);
+          console.log("There was an error submitting:", error);
         });
     }
   }

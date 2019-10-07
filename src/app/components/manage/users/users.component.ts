@@ -10,7 +10,7 @@ import { NotificationsService } from "src/app/services/notification.service";
   templateUrl: "./users.component.html",
   styleUrls: ["./users.component.scss"]
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent {
   users: Observable<User[]> = this.userService.getAllUsers();
   roles: string[] = this.userService.getUserRoles();
 
@@ -19,14 +19,11 @@ export class UsersComponent implements OnInit {
     private notificationService: NotificationsService
   ) {}
 
-  ngOnInit() {}
-
   changed(event: MatRadioChange, user_id: string) {
     console.log(event, user_id);
     this.userService
       .changeUserRole(event.value, user_id)
       .then(res => {
-        console.log(res);
         this.notificationService.setNotification(
           `User role changed to: ${event.value}`,
           "OK"
@@ -35,9 +32,10 @@ export class UsersComponent implements OnInit {
       .catch(error => {
         this.notificationService.setNotification(
           `There was an error changing the role.`,
-          "OK"
+          "OK",
+          error
         );
-        console.log(error);
+        console.log("Error changing role:", error);
       });
   }
 }

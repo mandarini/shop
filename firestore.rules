@@ -7,11 +7,15 @@ service cloud.firestore {
                 get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'super_admin';
     }
 
-    function isAdminNew() {
+    function isAdmin() {
       return isSuperAdmin() || 
       (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
           get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
          );
+    }
+
+    function notYourself() {
+      return request.auth.uid != resource.data.uid;
     }
 
     function isCommentOwner() {
@@ -58,8 +62,8 @@ service cloud.firestore {
     
     match /users/{userID} {
     	allow create, read: if isSuperAdmin() || request.auth.uid == userID;
-    	allow update: if isAdmin() && request.auth.uid != userID;
-    	allow delete: if isSuperAdmin() && request.auth.uid != userID;
+    	allow update: if isAdmin() && notYourself();
+    	allow delete: if isSuperAdmin() && notYourself();
     }  
   }
 }

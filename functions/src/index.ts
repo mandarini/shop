@@ -22,5 +22,5 @@ export const notifyUsers = functions.firestore
   .onWrite(notifyUsersFunction);
 
 export const notifyUsersFistTime = functions.firestore
-  .document("fcmTokens")
+  .document("fcmTokens/{tokenId}")
   .onWrite(notifyUsersFirstTimeFunction);

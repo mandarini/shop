@@ -17,7 +17,6 @@ export class UsersService {
   }
 
   setActiveUser(user: User) {
-    console.log(user);
     this.user = user;
   }
 

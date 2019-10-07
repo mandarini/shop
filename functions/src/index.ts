@@ -6,6 +6,7 @@ admin.initializeApp(functions.config().firebase);
 import { addProductIdToProductFunction } from "./sub_functions/addProductIdToProductFunction";
 import { createUserFunction } from "./sub_functions/createUserFunction";
 import { getFullProductFunction } from "./sub_functions/getFullProductFunction";
+import { notifyUsersFunction } from "./sub_functions/notifyUsersFunction";
 
 export const addProductIdToProduct = functions.firestore
   .document("products/{productId}")
@@ -14,3 +15,7 @@ export const addProductIdToProduct = functions.firestore
 export const createUser = functions.auth.user().onCreate(createUserFunction);
 
 export const getFullProduct = functions.https.onCall(getFullProductFunction);
+
+export const notifyUsers = functions.firestore
+  .document("products/{productId}/comments/{commentId}")
+  .onWrite(notifyUsersFunction);

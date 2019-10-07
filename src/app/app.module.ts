@@ -5,6 +5,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireFunctionsModule } from "@angular/fire/functions";
+import { AngularFireMessagingModule } from "@angular/fire/messaging";
 
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -53,6 +54,7 @@ import { NotificationComponent } from './components/notification/notification.co
     AngularFirestoreModule,
     AngularFireFunctionsModule,
     AngularFireAuthModule,
+    AngularFireMessagingModule,
     MatButtonModule,
     MatToolbarModule,
     MatRadioModule,

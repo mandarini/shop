@@ -1,3 +1,5 @@
+import { UserComment } from './comment';
+
 export interface Product {
   uid?: string;
   name: string;
@@ -6,5 +8,5 @@ export interface Product {
   price: number;
   rating?: number;
   img?: string;
-  comments: Comment[];
+  comments: UserComment[];
 }

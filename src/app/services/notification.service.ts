@@ -22,12 +22,15 @@ export class NotificationsService {
   }
 
   setNotification(message: string, action?: string, error?: any) {
-    console.log(error.code);
+    if (error) {
+      console.log(error.code);
+    }
+
     let notif_obj: Notification = {
       message: message,
       action: action ? action : "OK"
     };
-    if (error.code && error.code === "permission-denied") {
+    if (error && error.code && error.code === "permission-denied") {
       notif_obj.message = "You don't have permission to perform this action!";
     }
     this.notificationSubject.next(notif_obj);

@@ -1,29 +1,35 @@
-import { Component } from "@angular/core";
-import { ProductsService } from "./services/products.service";
-import { Product } from "./interfaces/product";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { UsersService } from "./services/users.service";
-import { User } from "./interfaces/user";
+import { Component } from '@angular/core';
+import { ProductsService } from './services/products.service';
+import { Product } from './interfaces/product';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UsersService } from './services/users.service';
+import { User } from './interfaces/user';
+import { Store } from '@ngrx/store';
+import { State } from './reducers/app.reducer';
+import { setAppVersion } from './app.actions';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   user: User;
   constructor(
     productService: ProductsService,
     public afAuth: AngularFireAuth,
-    private userService: UsersService
+    private userService: UsersService,
+    appStore: Store<State>
   ) {
+    appStore.dispatch(setAppVersion({ version: '0.1' }));
+
     productService.getAllProductsInit().subscribe(
       (products: Product[]) => {
         console.log(products);
         productService.setProducts(products);
       },
       error => {
-        console.log("Error loading products: ", error);
+        console.log('Error loading products: ', error);
       }
     );
 
@@ -37,7 +43,7 @@ export class AppComponent {
                 email: user.email,
                 displayName: user.displayName,
                 photoURL: user.photoURL,
-                role: user_full.role ? user_full.role : "plain"
+                role: user_full.role ? user_full.role : 'plain'
               };
               this.user = custom_user;
               this.userService.setActiveUser(custom_user);
@@ -53,7 +59,7 @@ export class AppComponent {
             }
           },
           error => {
-            console.log("Error getting user: ", error);
+            console.log('Error getting user: ', error);
           }
         );
       }

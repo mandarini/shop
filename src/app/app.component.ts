@@ -4,9 +4,9 @@ import { Product } from './interfaces/product';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UsersService } from './services/users.service';
 import { User } from './interfaces/user';
-import { Store } from '@ngrx/store';
-import { State } from './reducers/app.reducer';
-import { setAppVersion } from './app.actions';
+import { Store, select } from '@ngrx/store';
+import * as AppStore from './store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,14 +15,15 @@ import { setAppVersion } from './app.actions';
 })
 export class AppComponent {
   user: User;
+  appVersion$: Observable<string>;
   constructor(
     productService: ProductsService,
     public afAuth: AngularFireAuth,
     private userService: UsersService,
-    appStore: Store<State>
+    appStore: Store<AppStore.State>
   ) {
-    appStore.dispatch(setAppVersion({ version: '0.1' }));
-
+    appStore.dispatch(AppStore.setAppVersion({ version: '0.1' }));
+    this.appVersion$ = appStore.pipe(select(AppStore.selectAppVersion));
     productService.getAllProductsInit().subscribe(
       (products: Product[]) => {
         console.log(products);

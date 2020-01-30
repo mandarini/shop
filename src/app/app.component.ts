@@ -16,14 +16,16 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   user: User;
   appVersion$: Observable<string>;
+  appVersionUpdatedAt$: Observable<Date>;
   constructor(
     productService: ProductsService,
     public afAuth: AngularFireAuth,
     private userService: UsersService,
     appStore: Store<AppStore.State>
   ) {
-    appStore.dispatch(AppStore.setAppVersion({ version: '0.1' }));
+    appStore.dispatch(AppStore.appVersionSet({ version: '0.1' }));
     this.appVersion$ = appStore.pipe(select(AppStore.selectAppVersion));
+    this.appVersionUpdatedAt$ = appStore.pipe(select(AppStore.selectAppVersionUpdatedAt));
     productService.getAllProductsInit().subscribe(
       (products: Product[]) => {
         console.log(products);

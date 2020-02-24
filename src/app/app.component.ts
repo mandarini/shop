@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { ProductsService } from './services/products.service';
-import { Product } from './interfaces/product';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UsersService } from './services/users.service';
 import { User } from './interfaces/user';
@@ -17,24 +15,10 @@ export class AppComponent {
   user: User;
   appVersion$: Observable<string>;
   appVersionUpdatedAt$: Observable<Date>;
-  constructor(
-    productService: ProductsService,
-    public afAuth: AngularFireAuth,
-    private userService: UsersService,
-    appStore: Store<AppStore.State>
-  ) {
+  constructor(public afAuth: AngularFireAuth, private userService: UsersService, appStore: Store<AppStore.State>) {
     appStore.dispatch(AppStore.appVersionSet({ version: '0.1' }));
     this.appVersion$ = appStore.pipe(select(AppStore.selectAppVersion));
     this.appVersionUpdatedAt$ = appStore.pipe(select(AppStore.selectAppVersionUpdatedAt));
-    productService.getAllProductsInit().subscribe(
-      (products: Product[]) => {
-        console.log(products);
-        productService.setProducts(products);
-      },
-      error => {
-        console.log('Error loading products: ', error);
-      }
-    );
 
     this.afAuth.user.subscribe(user => {
       if (user) {

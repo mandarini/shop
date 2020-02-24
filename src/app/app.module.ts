@@ -35,6 +35,7 @@ import { reducers, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/effects/app.effects';
+import { ProductsEffects } from './store/effects/products.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
@@ -77,7 +78,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
       }
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([AppEffects, ProductsEffects]),
     StoreRouterConnectingModule.forRoot()
   ],
   entryComponents: [DeleteModalComponent],

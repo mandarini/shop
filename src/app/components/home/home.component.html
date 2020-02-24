@@ -4,7 +4,7 @@
 <button [routerLink]="['/create']">Add product</button>
 <ul>
   <li
-    *ngFor="let product of products | async"
+    *ngFor="let product of products$ | async"
     [routerLink]="['/product/' + product.uid]"
     routerLinkActive="router-link-active"
   >

@@ -10,10 +10,9 @@
     </nav>
   </mat-toolbar-row>
 </mat-toolbar>
-<div>
-  {{ appVersion$ | async }}, {{ appVersionUpdatedAt$ | async }}
-</div>
+<div>{{ appVersion$ | async }}, {{ appVersionUpdatedAt$ | async }}</div>
 <div class="content">
+  <mat-spinner *ngIf="(appStatus$ | async) === 'Loading'"> </mat-spinner>
   <router-outlet></router-outlet>
 </div>
 <app-notification></app-notification>

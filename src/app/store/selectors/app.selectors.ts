@@ -11,3 +11,7 @@ export const selectAppVersion = createSelector(selectAppFeature, (appState: AppS
 export const selectAppVersionUpdatedAt = createSelector(selectAppFeature, (appState: AppState) => {
   return appState.app_version_updated_at;
 });
+
+export const selectAppStatus = createSelector(selectAppFeature, (appState: AppState) => {
+  return appState.app_status;
+});

@@ -15,11 +15,12 @@ export class AppComponent {
   user: User;
   appVersion$: Observable<string>;
   appVersionUpdatedAt$: Observable<Date>;
+  appStatus$: Observable<'Initialized' | 'Loading' | 'Ready'>;
   constructor(public afAuth: AngularFireAuth, private userService: UsersService, appStore: Store<AppStore.State>) {
     appStore.dispatch(AppStore.appVersionSet({ version: '0.1' }));
     this.appVersion$ = appStore.pipe(select(AppStore.selectAppVersion));
     this.appVersionUpdatedAt$ = appStore.pipe(select(AppStore.selectAppVersionUpdatedAt));
-
+    this.appStatus$ = appStore.pipe(select(AppStore.selectAppStatus));
     this.afAuth.user.subscribe(user => {
       if (user) {
         this.userService.getUserRole(user.uid).subscribe(

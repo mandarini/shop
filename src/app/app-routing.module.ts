@@ -1,37 +1,39 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { HomeComponent } from "./components/home/home.component";
-import { ProductComponent } from "./components/product/product.component";
-import { LoginComponent } from "./components/login/login.component";
-import { ManageComponent } from "./components/manage/manage.component";
-import { CreateProductComponent } from "./components/product/create-product/create-product.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { ProductComponent } from './components/product/product.component';
+import { LoginComponent } from './components/login/login.component';
+import { ManageComponent } from './components/manage/manage.component';
+import { CreateProductComponent } from './components/product/create-product/create-product.component';
+import { HomeGuard } from './guards/home.guard';
 
 const routes: Routes = [
   {
-    path: "home",
-    component: HomeComponent
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [HomeGuard]
   },
   {
-    path: "product/:id",
+    path: 'product/:id',
     component: ProductComponent
   },
   {
-    path: "create",
+    path: 'create',
     component: CreateProductComponent
   },
   {
-    path: "login",
+    path: 'login',
     component: LoginComponent
   },
   {
-    path: "manage",
+    path: 'manage',
     component: ManageComponent
   },
-  { path: "**", redirectTo: "home" },
+  { path: '**', redirectTo: 'home' },
   {
-    path: "",
-    pathMatch: "full",
-    redirectTo: "home"
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
   }
 ];
 

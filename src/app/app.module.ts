@@ -37,6 +37,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/effects/app.effects';
 import { ProductsEffects } from './store/effects/products.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { HomeGuard } from './guards/home.guard';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     MatButtonModule,
     MatToolbarModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
     MatIconModule,
     FormsModule,
     MatDialogModule,
@@ -82,7 +85,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     StoreRouterConnectingModule.forRoot()
   ],
   entryComponents: [DeleteModalComponent],
-  providers: [],
+  providers: [HomeGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

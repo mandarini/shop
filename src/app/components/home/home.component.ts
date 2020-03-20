@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { State, selectProducts, productListLoading } from '../../store';
+import { State, selectProducts } from '../../store';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +16,5 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.products$ = this.store.pipe(select(selectProducts));
-    this.store.dispatch(productListLoading());
   }
 }

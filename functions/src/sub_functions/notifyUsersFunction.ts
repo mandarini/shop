@@ -14,7 +14,7 @@ export async function notifyUsersFunction(change: any, context: any) {
     notification: {
       title: `New comment!`,
       body: `New comment posted by ${data.user_email}`,
-      click_action: "https://shop-katerina.web.app/"
+      click_action: "https://shop-katers.web.app/"
     }
   };
 

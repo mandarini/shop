@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
-import { MatSnackBar, MatSnackBarConfig } from "@angular/material";
+import { MatSnackBar, MatSnackBarConfig } from "@angular/material/snack-bar";
 
 export interface Notification {
   message: string;

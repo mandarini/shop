@@ -1,4 +1,4 @@
-<div class="hello" *ngIf="afAuth.user | async as user; else showLogin">
+<div class="hello" *ngIf="auth.user | async as user; else showLogin">
   <h1>Hello {{ user.displayName }}!</h1>
   <button (click)="logout()">Logout</button>
 </div>

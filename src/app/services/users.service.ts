@@ -3,7 +3,7 @@ import { User } from "../interfaces/user";
 import {
   AngularFirestore,
   AngularFirestoreCollection
-} from "@angular/fire/firestore";
+} from "@angular/fire/compat/firestore";
 import { Observable } from "rxjs";
 
 @Injectable({

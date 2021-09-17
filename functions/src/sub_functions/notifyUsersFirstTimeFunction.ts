@@ -7,7 +7,7 @@ export async function notifyUsersFirstTimeFunction(change: any, context: any) {
     notification: {
       title: `Success!`,
       body: `You will now receive notifications!`,
-      click_action: "https://shop-katerina.web.app/"
+      click_action: "https://shop-katers.web.app/"
     }
   };
 

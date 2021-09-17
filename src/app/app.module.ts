@@ -1,11 +1,11 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { AngularFireModule } from "@angular/fire";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFireFunctionsModule } from "@angular/fire/functions";
-import { AngularFireMessagingModule } from "@angular/fire/messaging";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireFunctionsModule } from "@angular/fire/compat/functions";
+import { AngularFireMessagingModule } from "@angular/fire/compat/messaging";
 
 import { AppRoutingModule } from "./app-routing.module";
 

@@ -3,11 +3,11 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
   DocumentData
-} from "@angular/fire/firestore";
+} from "@angular/fire/compat/firestore";
 import { Product } from "../interfaces/product";
 import { BehaviorSubject, Observable } from "rxjs";
 import { UserComment } from "../interfaces/comment";
-import { AngularFireFunctions } from "@angular/fire/functions";
+import { AngularFireFunctions } from "@angular/fire/compat/functions";
 
 export interface FullProduct {
   uid?: string;

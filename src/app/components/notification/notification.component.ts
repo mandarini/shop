@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { MatSnackBarConfig, MatSnackBar } from "@angular/material";
+import { MatSnackBarConfig, MatSnackBar } from "@angular/material/snack-bar";
 import {
   NotificationsService,
   Notification

@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ProductsService } from "src/app/services/products.service";
 import { Product } from "src/app/interfaces/product";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { NotificationsService } from "src/app/services/notification.service";
 
 @Component({

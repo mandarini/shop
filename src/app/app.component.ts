@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ProductsService } from "./services/products.service";
 import { Product } from "./interfaces/product";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { UsersService } from "./services/users.service";
 import { User } from "./interfaces/user";
 

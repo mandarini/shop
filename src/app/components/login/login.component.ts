@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { auth } from "firebase/app";
-import { AngularFireMessaging } from "@angular/fire/messaging";
-import { AngularFirestore } from "@angular/fire/firestore";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { auth } from "firebase/compat/app";
+import { AngularFireMessaging } from "@angular/fire/compat/messaging";
+import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { mergeMap } from "rxjs/operators";
 import { NotificationsService } from "src/app/services/notification.service";
 

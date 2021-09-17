@@ -8,7 +8,7 @@ import { NotificationsService } from "src/app/services/notification.service";
 @Component({
   selector: "app-create-comment",
   templateUrl: "./create-comment.component.html",
-  styleUrls: ["../../create-product/create-product.component.scss"]
+  styleUrls: ["../../create-product/create-product.component.scss"],
 })
 export class CreateCommentComponent {
   @Input() product: Product;
@@ -26,36 +26,38 @@ export class CreateCommentComponent {
     this.newCommentForm = this.fb.group({
       text: ["", [Validators.required]],
       title: ["", []],
-      rating: [null, Validators.required]
+      rating: [null, Validators.required],
     });
 
-    this.currentUser = this.afAuth.auth.currentUser
-      ? this.afAuth.auth.currentUser.displayName
-        ? this.afAuth.auth.currentUser.displayName
-        : "anonymous"
-      : "anonymous";
+    this.afAuth.currentUser.then((currentUser) => {
+      this.currentUser = currentUser
+        ? currentUser.displayName
+          ? currentUser.displayName
+          : "anonymous"
+        : "anonymous";
+    });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.newCommentForm.valid) {
       let comment = {
         ...this.newCommentForm.value,
-        user_email: this.afAuth.auth.currentUser
-          ? this.afAuth.auth.currentUser.email
-            ? this.afAuth.auth.currentUser.email
+        user_email: (await this.afAuth.currentUser)
+          ? (await this.afAuth.currentUser).email
+            ? (await this.afAuth.currentUser).email
             : "anonymous"
           : "anonymous",
-        date: Date.now()
+        date: Date.now(),
       };
       this.productService
         .createComment(this.product.uid, comment)
-        .then(res => {
+        .then((res) => {
           console.log(res);
           this.notificationService.setNotification("Comment posted!", "OK");
           this.done_saving.emit("success");
           this.newCommentForm.reset();
         })
-        .catch(error => {
+        .catch((error) => {
           this.done_saving.emit("error");
           this.notificationService.setNotification(
             "Error posting comment!",

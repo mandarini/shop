@@ -1,0 +1,30 @@
+[debug] [2021-09-17T17:27:40.596Z] ----------------------------------------------------------------------
+[debug] [2021-09-17T17:27:40.600Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2021-09-17T17:27:40.601Z] CLI Version:   9.5.0
+[debug] [2021-09-17T17:27:40.601Z] Platform:      darwin
+[debug] [2021-09-17T17:27:40.601Z] Node Version:  v14.15.5
+[debug] [2021-09-17T17:27:40.602Z] Time:          Fri Sep 17 2021 20:27:40 GMT+0300 (Eastern European Summer Time)
+[debug] [2021-09-17T17:27:40.602Z] ----------------------------------------------------------------------
+[debug] [2021-09-17T17:27:40.602Z] 
+[debug] [2021-09-17T17:27:40.608Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-09-17T17:27:40.608Z] > authorizing via signed-in user
+[debug] [2021-09-17T17:27:40.609Z] [iam] checking project shop-katers for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-09-17T17:27:40.611Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/shop-katers:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-09-17T17:27:41.541Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 17 Sep 2021 17:27:41 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=766","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-17T17:27:41.542Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/shop-katers/serviceAccounts/shop-katers@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-09-17T17:27:42.447Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 17 Sep 2021 17:27:42 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-17T17:27:42.448Z] > refreshing access token with scopes: []
+[debug] [2021-09-17T17:27:42.449Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-09-17T17:27:42.652Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Fri, 17 Sep 2021 17:27:42 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-17T17:27:42.684Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shop-katers [none]
+[debug] [2021-09-17T17:27:43.068Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shop-katers 200
+[debug] [2021-09-17T17:27:43.068Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shop-katers {"projectId":"shop-katers","projectNumber":"2792165170","displayName":"shop-katers","name":"projects/shop-katers","resources":{"hostingSite":"shop-katers","storageBucket":"shop-katers.appspot.com","locationId":"europe-west"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'shop-katers'...
+[info] 
+[info] i  deploying firestore, functions, hosting 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
